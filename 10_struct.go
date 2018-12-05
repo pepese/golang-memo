@@ -47,3 +47,9 @@ func main() {
 	u1.hit()
 	u1.show()
 }
+
+// tag
+// https://qiita.com/itkr/items/9b4e8d8c6d574137443c
+
+// enum
+// https://qiita.com/awakia/items/c81c7816b9aea5422250
