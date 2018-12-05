@@ -48,4 +48,11 @@ func main() {
 	fmt.Println(a)
 	fmt.Println(b)
 	fmt.Printf("%f\n", value)
+
+	/*
+		！！！変数・定数・関数定義の１文字目に注意！！！
+		- 小文字から始まる場合、パッケージ内でのみ参照可能
+		- 大文字から始まる場合、パッケージ外からも参照可能
+		    - `fmt.Println`
+	*/
 }
