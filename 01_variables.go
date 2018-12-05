@@ -49,6 +49,15 @@ func main() {
 	fmt.Println(b)
 	fmt.Printf("%f\n", value)
 
+	// 列挙
+	const (
+		zero = iota
+		one
+		two
+		three
+	)
+	fmt.Println(zero, one, two, three)
+
 	/*
 		！！！変数・定数・関数定義の１文字目に注意！！！
 		- 小文字から始まる場合、パッケージ内でのみ参照可能

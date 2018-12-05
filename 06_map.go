@@ -11,9 +11,7 @@ func main() {
 
 	// キーの存在確認
 	value, exist := m1["a"]
-	fmt.Print(value)
-	fmt.Print(", ")
-	fmt.Println(exist)
+	fmt.Println(value, exist)
 
 	// 要素削除
 	delete(m1, "b")

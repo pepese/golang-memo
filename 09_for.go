@@ -13,16 +13,14 @@ func main() {
 		} else if i == 8 {
 			break
 		}
-		fmt.Print(i)
-		fmt.Print(", ")
+		fmt.Print(i, ", ")
 	}
 	fmt.Println()
 
 	// while 的な
 	n := 0
 	for n < 10 {
-		fmt.Print(n)
-		fmt.Print(", ")
+		fmt.Print(n, ", ")
 		n++
 	}
 	fmt.Println()
@@ -30,9 +28,7 @@ func main() {
 	// range
 	s := []string{"a", "b", "c"}
 	for i, v := range s {
-		fmt.Print(i)
-		fmt.Print(", ")
-		fmt.Println(v)
+		fmt.Print(i, ",", v)
 	}
 
 	// ブランク修飾子
