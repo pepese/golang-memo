@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
 func main() {
@@ -58,10 +59,17 @@ func main() {
 	)
 	fmt.Println(zero, one, two, three)
 
+	// 型の検査
+	fmt.Println(reflect.TypeOf(value))
+
 	/*
 		！！！変数・定数・関数定義の１文字目に注意！！！
+		[スコープ]
 		- 小文字から始まる場合、パッケージ内でのみ参照可能
 		- 大文字から始まる場合、パッケージ外からも参照可能
-		    - `fmt.Println`
+			- `fmt.Println`
+		[整数リテラル]
+		- 8進数：01
+		- 16進数：0x1
 	*/
 }
