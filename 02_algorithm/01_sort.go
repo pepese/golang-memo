@@ -84,14 +84,49 @@ func quickSort(list []int) (int, error) {
 	return *roopNum, nil
 }
 
+func mergeSort(list []int) (int, error) {
+	roopNum := 0
+	if list == nil {
+		return roopNum, errors.New("")
+	}
+	var sort func(list []int, left int, right int)
+	sort = func(list []int, left int, right int) {
+		i, k := left, right
+		j := int((i + k) / 2)
+		if i == k {
+			return
+		}
+		sort(list, i, j)
+		sort(list, j+1, k)
+		func(_list []int, _i int, _j int, _k int) {
+			l, m := _i, _j
+			var tmp []int
+			for l <= _j && m <= _k {
+				if _list[l] < _list[m] {
+					tmp = append(tmp, _list[l])
+					l++
+				} else {
+					tmp = append(tmp, _list[m])
+					m++
+				}
+			}
+			copy(_list[_i:_k+1], tmp[:])
+		}(list, i, j, k)
+	}
+	sort(list, 0, len(list)-1)
+	return roopNum, nil
+}
+
 func main() {
 	list1 := []int{}
 	list2 := []int{}
+	list3 := []int{}
 	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < 10; i++ {
 		rnd := rand.Intn(10)
 		list1 = append(list1, rnd)
 		list2 = append(list2, rnd)
+		list3 = append(list2, rnd)
 	}
 	fmt.Println("before sort ", list1)
 	num, err := bubbleSort(list1)
@@ -103,6 +138,12 @@ func main() {
 	num, err = quickSort(list2)
 	if err == nil {
 		fmt.Println("after quickSort  ", list2, num, err)
+	} else {
+		fmt.Println(err)
+	}
+	num, err = mergeSort(list3)
+	if err == nil {
+		fmt.Println("after mergeSort  ", list3, num, err)
 	} else {
 		fmt.Println(err)
 	}
