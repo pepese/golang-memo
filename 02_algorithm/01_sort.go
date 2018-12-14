@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"math/rand"
+	"sort"
 	"time"
 )
 
@@ -60,6 +61,7 @@ func quickSort(list []int) (int, error) {
 				}
 			}(list[left], list[int(i+(j-i)/2)], list[right])
 			for true {
+				*roopNum++
 				for list[i] < pivot {
 					i++
 				}
@@ -91,17 +93,18 @@ func mergeSort(list []int) (int, error) {
 	}
 	var sort func(list []int, left int, right int)
 	sort = func(list []int, left int, right int) {
-		i, k := left, right
-		j := int((i + k) / 2)
-		if i == k {
+		if left == right {
 			return
 		}
+		i, k := left, right
+		j := int((i + k) / 2)
 		sort(list, i, j)
 		sort(list, j+1, k)
 		func(_list []int, _i int, _j int, _k int) {
-			l, m := _i, _j
+			l, m := _i, _j+1
 			var tmp []int
 			for l <= _j && m <= _k {
+				roopNum++
 				if _list[l] < _list[m] {
 					tmp = append(tmp, _list[l])
 					l++
@@ -109,6 +112,11 @@ func mergeSort(list []int) (int, error) {
 					tmp = append(tmp, _list[m])
 					m++
 				}
+			}
+			if l >= _j && m < _k {
+				tmp = append(tmp, _list[m:_k+1]...)
+			} else if l <= _j && m >= _k {
+				tmp = append(tmp, _list[l:_j+1]...)
 			}
 			copy(_list[_i:_k+1], tmp[:])
 		}(list, i, j, k)
@@ -126,12 +134,12 @@ func main() {
 		rnd := rand.Intn(10)
 		list1 = append(list1, rnd)
 		list2 = append(list2, rnd)
-		list3 = append(list2, rnd)
+		list3 = append(list3, rnd)
 	}
 	fmt.Println("before sort ", list1)
 	num, err := bubbleSort(list1)
 	if err == nil {
-		fmt.Println("after bubbleSort  ", list1, num, err)
+		fmt.Println("after bubbleSort ", list1, num, err)
 	} else {
 		fmt.Println(err)
 	}
@@ -147,4 +155,6 @@ func main() {
 	} else {
 		fmt.Println(err)
 	}
+
+	sort.Sort(list1)
 }
