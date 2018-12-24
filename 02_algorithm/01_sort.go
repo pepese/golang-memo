@@ -2,10 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
-	"math/rand"
-	"sort"
-	"time"
 )
 
 func bubbleSort(list []int) (int, error) {
@@ -123,38 +119,4 @@ func mergeSort(list []int) (int, error) {
 	}
 	sort(list, 0, len(list)-1)
 	return roopNum, nil
-}
-
-func main() {
-	list1 := []int{}
-	list2 := []int{}
-	list3 := []int{}
-	rand.Seed(time.Now().UnixNano())
-	for i := 0; i < 10; i++ {
-		rnd := rand.Intn(10)
-		list1 = append(list1, rnd)
-		list2 = append(list2, rnd)
-		list3 = append(list3, rnd)
-	}
-	fmt.Println("before sort ", list1)
-	num, err := bubbleSort(list1)
-	if err == nil {
-		fmt.Println("after bubbleSort ", list1, num, err)
-	} else {
-		fmt.Println(err)
-	}
-	num, err = quickSort(list2)
-	if err == nil {
-		fmt.Println("after quickSort  ", list2, num, err)
-	} else {
-		fmt.Println(err)
-	}
-	num, err = mergeSort(list3)
-	if err == nil {
-		fmt.Println("after mergeSort  ", list3, num, err)
-	} else {
-		fmt.Println(err)
-	}
-
-	sort.Sort(list1)
 }
