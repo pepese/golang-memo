@@ -10,6 +10,26 @@ CLI 作成ツール [cobra](https://github.com/spf13/cobra) を利用して簡�
         - デフォルトの `zipcode` は `1638001` 東京都庁
 - シグナル（ kill ）を受け取って Graceful Stop する
 
+# 最初にちょっとメモ
+
+## golang における OpenAPI/Swagger 周りの状況について。[2019/01/04]
+
+Swaggerは2015年12月31日に、マイクロソフトやグーグルなどにより設立されたOAI(Open API Initiative)に寄贈され、Swagger SpecはOAS（OAS:Open API Specification）へと名称変更された。  
+Swagger Specの1行目に記載する識別子が、`swagger: "2.0"` から `openapi: 3.0.0` になり、バージョンも2.xから3.xになった。  
+Open API は バージョン 3.0 が初版であり、Swagger 3.0 と OAS:Open API Specification 3.0 は同じものと考えてよい。ただし、 Swagger Spec の 1 行目には `swagger: 3.0.0` とは書かず `openapi: 3.0.0` と書く。（ [参考](https://news.mynavi.jp/itsearch/article/devsoft/3854) ）
+
+現状、 golang の Swagger コンバーター は以下のものがある
+
+- [go-swagger](https://github.com/go-swagger/go-swagger)
+    - 僅差で最もメジャーっぽいが、 現状 Swagger 2.0 で OAP 3.0 に対応中の模様
+- [goa](https://github.com/goadesign/goa)
+    - go-swagger より僅差でマイナー。独自の DSL で記述し、 Swagger Spec を出力できる。
+- [go-openapi](https://github.com/go-openapi/spec)
+    - k8s が採用している [go-restful](https://github.com/emicklei/go-restful) に対応
+
+上記のような状況なので、ここでは、 最新ではない Swagger 2.0 ではあるが、 `go-swagger` を使おうかな、、、どないしょう。  
+ちな k8s は現状 Swagger 2.0 。
+
 # [cobra](https://github.com/spf13/cobra)
 
 Cobra のセットアップと初期プロジェクトの作成。
