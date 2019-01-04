@@ -48,6 +48,9 @@ func main() {
 	/*
 		channel
 		return を受け取れる並列処理
+		chan   : read-write
+		<-chan : read only
+		chan<- : write only
 	*/
 	// chan型で受け渡すデータの型はstring
 	result := make(chan string)
