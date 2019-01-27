@@ -1,2 +1,6 @@
 - Goならわかるシステムプログラミング
     - http://ascii.jp/elem/000/001/235/1235262/
+- Essential Go
+    - https://www.programming-books.io/essential/go/
+- Goオールスターズ2
+    - https://godgarden.goat.me/3CEfvK8z
