@@ -1,0 +1,1 @@
+https://talks.godoc.org/github.com/tcnksm/talks/2016/12/golang-tokyo/golang-tokyo.slide#1
