@@ -1,12 +1,9 @@
 package main
 
-// C060:辞書の作成
-
 import (
 	"bufio"
 	"fmt"
 	"os"
-	"sort"
 	"strconv"
 	"strings"
 )
@@ -14,19 +11,22 @@ import (
 func main() {
 	sc := bufio.NewScanner(os.Stdin)
 	sc.Scan()
-	s := sc.Text()
-	nums := strings.Split(s, " ")
-	//num1, _ := strconv.Atoi(nums[0])
-	num2, _ := strconv.Atoi(nums[1])
-	num3, _ := strconv.Atoi(nums[2])
-	//nn := num1 % num2
-	sc.Scan()
-	s = sc.Text()
-	words := strings.Split(s, " ")
-	sort.Strings(words)
-	for i, word := range words {
-		if i >= num2*(num3-1) && i < num2*num3 {
-			fmt.Println(word)
+	line := strings.Split(sc.Text(), " ")
+	boxNum, _ := strconv.Atoi(line[0])
+	r, _ := strconv.Atoi(line[1])
+	rr := 2 * r
+	var oks []int
+	for i := 1; i <= boxNum; i++ {
+		sc.Scan()
+		line := strings.Split(sc.Text(), " ")
+		h, _ := strconv.Atoi(line[0])
+		w, _ := strconv.Atoi(line[1])
+		d, _ := strconv.Atoi(line[2])
+		if rr <= h && rr <= w && rr <= d {
+			oks = append(oks, i)
 		}
+	}
+	for _, ok := range oks {
+		fmt.Println(ok)
 	}
 }
