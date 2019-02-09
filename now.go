@@ -2,24 +2,36 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
-func sort(list []int) error {
-	eNum := len(list)
-	for i := eNum; i > 0; i-- {
-		for j := 0; j < i-1; j++ {
-			if list[j] > list[j+1] {
-				temp := list[j]
-				list[j] = list[j+1]
-				list[j+1] = temp
-			}
-		}
-	}
-	return nil
+type user struct {
+	name string
+	age  int
+}
+
+type users []user
+
+func (u users) Len() int {
+	return len(u)
+}
+
+func (u users) Less(i, j int) bool {
+	return u[i].age < u[j].age
+}
+
+func (u users) Swap(i, j int) {
+	u[i], u[j] = u[j], u[i]
 }
 
 func main() {
-	list := []int{3, 4, 1, 2, 8, 5}
-	sort(list)
-	fmt.Println(list)
+	list := []user{
+		user{name: "A", age: 2},
+		user{name: "B", age: 1},
+		user{name: "C", age: 4},
+		user{name: "D", age: 3},
+	}
+	us := users(list)
+	sort.Sort(us)
+	fmt.Println(us)
 }
