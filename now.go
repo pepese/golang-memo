@@ -1,37 +1,32 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"sort"
+	"os"
+	"strconv"
 )
 
-type user struct {
-	name string
-	age  int
-}
-
-type users []user
-
-func (u users) Len() int {
-	return len(u)
-}
-
-func (u users) Less(i, j int) bool {
-	return u[i].age < u[j].age
-}
-
-func (u users) Swap(i, j int) {
-	u[i], u[j] = u[j], u[i]
-}
-
 func main() {
-	list := []user{
-		user{name: "A", age: 2},
-		user{name: "B", age: 1},
-		user{name: "C", age: 4},
-		user{name: "D", age: 3},
+	sc := bufio.NewScanner(os.Stdin)
+	sc.Split(bufio.ScanWords)
+	/*
+		sc.Scan()
+		in, _ := strconv.Atoi(sc.Text())
+		m := float64(in)
+		sc.Scan()
+		in, _ = strconv.Atoi(sc.Text())
+		p := float64(in)
+		sc.Scan()
+		in, _ = strconv.Atoi(sc.Text())
+		q := float64(in)
+		fmt.Println(float64(m * (100 - p) / 100 * (100 - q) / 100))
+	*/
+	var in []float64
+	for sc.Scan() {
+		e, _ := strconv.Atoi(sc.Text())
+		in = append(in, float64(e))
 	}
-	us := users(list)
-	sort.Sort(us)
-	fmt.Println(us)
+	m, p, q := in[0], in[1], in[2]
+	fmt.Println(float64(m * (100 - p) / 100 * (100 - q) / 100))
 }
