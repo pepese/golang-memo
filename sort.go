@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func sort(list []int) error {
+func sort(list []int) {
 	eNum := len(list)
 	for i := eNum; i > 0; i-- {
 		for j := 0; j < i-1; j++ {
@@ -13,7 +13,6 @@ func sort(list []int) error {
 			}
 		}
 	}
-	return nil
 }
 
 func main() {
