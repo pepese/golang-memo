@@ -16,7 +16,7 @@ func exec(r io.Reader) string {
 	for sc.Scan() {
 		str = append(str, fmt.Sprint(sc.Text()))
 	}
-	return strings.Join(str, "") // 結果の文字列を返却
+	return strings.Join(str, "\n") // 結果の文字列を返却
 }
 
 // 標準入力は `ctr+D` で EOF になる

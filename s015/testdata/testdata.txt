@@ -1,0 +1,8 @@
+[input]
+2 3 6
+[output]
+BCBA
+[input]
+10 123 139
+[output]
+BAAABCBABCCBAABCB

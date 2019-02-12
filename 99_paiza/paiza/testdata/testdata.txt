@@ -2,9 +2,11 @@
 aaa
 bbb
 [output]
-aaabbb
+aaa
+bbb
 [input]
 ccc
 ddd
 [output]
-cccddd
+ccc
+ddd
