@@ -19,6 +19,6 @@ AA
 [output]
 A
 [input]
-30 1 1
+50 1 1
 [output]
 A

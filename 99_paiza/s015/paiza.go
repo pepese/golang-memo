@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -129,6 +130,7 @@ func exec(r io.Reader) string {
 	return string(result)
 }
 */
+/*
 func exec(r io.Reader) string {
 	sc := bufio.NewScanner(r)
 	sc.Scan()
@@ -158,6 +160,33 @@ func exec(r io.Reader) string {
 	}
 	//return string(l[s-1 : t])
 	return string(result)
+}
+*/
+func exec(r io.Reader) string {
+	en := func(n int) int {
+		return 3 * (int(math.Pow(2.0, float64(n+1))) - 1)
+	}
+	sc := bufio.NewScanner(r)
+	sc.Scan()
+	ins := strings.Split(sc.Text(), " ")
+	k, _ := strconv.Atoi(ins[0])
+	s, _ := strconv.Atoi(ins[1])
+	t, _ := strconv.Atoi(ins[2])
+	//l := make([]string, en(k-1), 2*en(k-1))
+	l := make([]string, en(k-1))
+	top := k - 1
+	l[top], l[top+1], l[top+2] = "A", "B", "C"
+	for i := 0; i < k-1; i++ {
+		size := en(i)
+		l[top-1] = "A"
+		l[top+size] = "B"
+		for j := top + size + 1; j < top+2*size+1; j++ {
+			l[j] = l[j-size-1]
+		}
+		l[top+2*size+1] = "C"
+		top--
+	}
+	return strings.Join(l[s-1:t], "")
 }
 
 func main() {
