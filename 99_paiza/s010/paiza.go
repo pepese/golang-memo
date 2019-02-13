@@ -21,6 +21,9 @@ func exec(r io.Reader) string {
 	R, _ := strconv.Atoi(ins[5])
 	sc.Scan()
 	// どこにある判定
+	//   r
+	// d-t-u-b
+	//   l
 	a := func(in, t, b, u, d, l, r int) (int, int, int, int, int, int, int) {
 		switch in {
 		case t: // そのまま、回転しない
@@ -35,24 +38,24 @@ func exec(r io.Reader) string {
 		case d: // 左、右回転:t->d, u->t,b->u,d->b
 			//fmt.Println("d")
 			return 1, d, u, t, b, l, r
-		case l: // 前、奥回転:t->l, l->r, r->t
+		case l: // 前、奥回転:t->l, l->b, b->r, r->t
 			//fmt.Println("l")
-			return 1, l, b, u, d, r, t
-		case r: // 奥、前回転:t->r, r->l ,l->t
+			return 1, l, r, u, d, b, t
+		case r: // 奥、前回転:t->r, r->b, b->l, l->t
 			//fmt.Println("r")
-			return 1, r, b, u, d, t, l
+			return 1, r, l, u, d, t, b
 		}
 		//fmt.Println("hoge")
 		return 0, t, b, u, d, l, r
 	}
 	// 回転
 	//N, _ := strconv.Atoi(sc.Text())
-	sum := 1
+	sum := 0
 	for sc.Scan() {
 		num, _ := strconv.Atoi(sc.Text())
 		var out int
 		out, T, B, U, D, L, R = a(num, T, B, U, D, L, R)
-		//fmt.Println("num: ", out)
+		//fmt.Println("num:", num, " / T:", T, "B:", B, "U:", U, "D:", D, "L:", L, "R:", R, " / out:", out)
 		sum += out
 	}
 	return fmt.Sprintf("%d", sum)
