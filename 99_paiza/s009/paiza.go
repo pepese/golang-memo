@@ -36,15 +36,12 @@ func permutation(f func([]int), n, m int) {
 
 func exec(r io.Reader) string {
 	chikan := func(s, p []int, nn int) []int {
-		//fmt.Println("s", s)
-		//fmt.Println("p", p)
 		tmp := make([]int, nn)
 		for i := 0; i < nn; i++ {
 			si := s[i]
 			pi := p[i] - 1
 			tmp[pi] = si
 		}
-		//fmt.Println("tmp", tmp)
 		return tmp
 	}
 	hikaku := func(r, t []int) bool { // r > t なら true
@@ -76,19 +73,20 @@ func exec(r io.Reader) string {
 		p[i] = make([]int, n)
 		for j := range pStr {
 			num, _ := strconv.Atoi(pStr[j])
-			p[i] = append(p[i], num)
+			p[i][j] = num
 		}
 	}
 	pp := func(xs []int) {
 		T := S
-		for i := range xs {
-			T = chikan(T, p[xs[i]-1], n)
+		for j := 0; j < len(xs); j++ {
+			for i := 0; i <= j; i++ {
+				T = chikan(T, p[xs[i]-1], n)
+			}
+			flag := hikaku(result, T)
+			if flag {
+				result = T
+			}
 		}
-		flag := hikaku(result, T)
-		if flag {
-			result = T
-		}
-		fmt.Println(xs)
 	}
 	permutation(pp, m, m)
 	var sr []string
@@ -102,39 +100,3 @@ func exec(r io.Reader) string {
 func main() {
 	fmt.Println(exec(os.Stdin))
 }
-
-/*
-package main
-
-import (
-	"fmt"
-)
-
-func member(n int, xs []int) bool {
-    for _, x := range xs {
-        if n == x { return true }
-    }
-    return false
-}
-
-func permSub(f func([]int), n, m int, xs []int) {
-    if len(xs) == m {
-        f(xs)
-    } else {
-        for i := 1; i <= n; i++ {
-            if !member(i, xs) {
-                permSub(f, n, m, append(xs, i))
-            }
-        }
-    }
-}
-
-func permutation(f func([]int), n, m int) {
-    permSub(f, n, m, make([]int, 0, m))
-}
-
-func main() {
-    p := func(xs []int) { fmt.Println(xs) }
-    permutation(p, 2, 2)
-}
-*/

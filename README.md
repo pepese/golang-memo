@@ -4,3 +4,5 @@
     - https://www.programming-books.io/essential/go/
 - Goオールスターズ2
     - https://godgarden.goat.me/3CEfvK8z
+- M.Hiroi's Home Page：Goで様々アルゴリズムを学ぶのにいい！
+    - http://www.geocities.jp/m_hiroi/golang/
