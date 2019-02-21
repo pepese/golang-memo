@@ -52,7 +52,9 @@ func startWeb(cmd *cobra.Command, args []string) {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprintf(w, "Hello World")
+		fmt.Fprintf(w, "Hello Go!")
 	})
-	http.ListenAndServe(":8080", mux)
+	srv := &http.Server{Addr: ":8080", Handler: mux}
+	srv.ListenAndServe()
+	//http.ListenAndServe(":8080", mux)
 }
