@@ -15,6 +15,7 @@
 package cmd
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/spf13/cobra"
@@ -48,5 +49,10 @@ func init() {
 }
 
 func startWeb(cmd *cobra.Command, args []string) {
-	http.ListenAndServe(":8080", nil)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprintf(w, "Hello World")
+	})
+	http.ListenAndServe(":8080", mux)
 }
