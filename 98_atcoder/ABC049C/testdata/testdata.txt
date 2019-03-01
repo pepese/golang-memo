@@ -1,0 +1,12 @@
+[input]
+erasedream
+[output]
+YES
+[input]
+dreameraser
+[output]
+YES
+[input]
+dreamerer
+[output]
+NO

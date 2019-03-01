@@ -16,10 +16,8 @@ func exec(r io.Reader) string {
 	N, _ := strconv.Atoi(in[0])
 	Y, _ := strconv.Atoi(in[1])
 	result := ""
-	sx := Y / 10000
-	sy := (Y - 10000*sx) / 5000
-	for x := sx; x >= 0; x-- { // 10000
-		for y := sy + 2*x; y >= 0; y-- { // 5000
+	for x := Y / 10000; x >= 0; x-- { // 10000
+		for y := (Y - 10000*x) / 5000; y >= 0; y-- { // 5000
 			z := N - x - y // 1000
 			if z >= 0 && 10000*x+5000*y+1000*z == Y {
 				result = fmt.Sprintf("%d %d %d", x, y, z)
