@@ -10,3 +10,15 @@ YES
 dreamerer
 [output]
 NO
+[input]
+dreamer
+[output]
+YES
+[input]
+dream
+[output]
+YES
+[input]
+
+[output]
+NO
