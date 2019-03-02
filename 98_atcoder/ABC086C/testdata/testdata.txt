@@ -1,0 +1,17 @@
+[input]
+2
+3 1 2
+6 1 1
+[output]
+YES
+[input]
+1
+2 100 100
+[output]
+NO
+[input]
+2
+5 1 1
+100 1 1
+[output]
+NO
