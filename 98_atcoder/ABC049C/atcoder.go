@@ -12,8 +12,8 @@ import (
 
 func search(s string, words []string, index int, result *string) {
 	for _, w := range words {
-		if index < len(s) && strings.Index(s[index:], w) == 0 {
-			fmt.Printf("s:%s, index:%d, w:%s, now:%s\n", s, index, w, s[index:])
+		//if index < len(s) && strings.Index(s[index:], w) == 0 {
+		if len(s[index:]) >= len(w) && s[index:index+len(w)] == w {
 			if index+len(w) == len(s) {
 				*result = "YES"
 			} else {
@@ -41,7 +41,7 @@ func search3(s string, words []string) bool {
 	for i := 0; i < len(s); {
 		flag2 := false
 		for _, w := range words {
-			if strings.Index(s[i:], w) == 0 {
+			if len(s[i:]) >= len(w) && strings.Index(s[i:], w) == 0 {
 				flag2 = true
 				i += len(w)
 			}
@@ -60,16 +60,6 @@ func exec(r io.Reader) string {
 	sc := bufio.NewScanner(r)
 	sc.Scan()
 	s := sc.Text()
-	/*
-			index, result := 0, "NO"
-			search(s, words, index, &result)
-		return result
-	*/
-	/*
-			result := "NO"
-			search2(s, words, &result)
-		return result
-	*/
 	s = func(s string) string {
 		rs := []rune(s)
 		for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
@@ -77,11 +67,28 @@ func exec(r io.Reader) string {
 		}
 		return string(rs)
 	}(s)
-	if search3(s, words) {
-		return "YES"
-	} else {
-		return "NO"
-	}
+	index, result := 0, "NO"
+	search(s, words, index, &result)
+	return result
+	/*
+			result := "NO"
+			search2(s, words, &result)
+		return result
+	*/
+	/*
+		s = func(s string) string {
+			rs := []rune(s)
+			for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+				rs[i], rs[j] = rs[j], rs[i]
+			}
+			return string(rs)
+		}(s)
+		if search3(s, words) {
+			return "YES"
+		} else {
+			return "NO"
+		}
+	*/
 }
 
 func main() {
