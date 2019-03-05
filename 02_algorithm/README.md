@@ -29,6 +29,16 @@ $ go test -run <テスト関数名>
         - 何度も同じ探索をして計算量は多いが、メモリ消費は少ない
         - 深さ優先探索のようにループしない
 
+ ## 全文探索
+
+- for 文を二重三重にして回す
+- bit 全探索
+- DFS
+- BFS
+
+- https://qiita.com/drken/items/e77685614f3c6bf86f44
+- https://qiita.com/drken/items/7c6ff2aa4d8fce1c9361#bit-%E5%85%A8%E6%8E%A2%E7%B4%A2f
+
 # 参考
 
 - https://paiza.hatenablog.com/entry/2015/10/19/IT%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%81%AA%E3%82%89%E7%9F%A5%E3%81%A3%E3%81%A6%E3%81%8A%E3%81%8D%E3%81%9F%E3%81%84%E3%80%81%E4%BB%8A%E6%9B%B4%E8%81%9E%E3%81%91%E3%81%AA%E3%81%84%E3%82%A2

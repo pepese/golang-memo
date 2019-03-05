@@ -1,9 +1,5 @@
 package main
 
-//https://qiita.com/drken/items/e77685614f3c6bf86f44
-//https://qiita.com/drken/items/fd4e5e3630d0f5859067
-//http://chokudai.hatenablog.com/entry/2019/02/11/155904
-
 import (
 	"bufio"
 	"fmt"
@@ -52,6 +48,9 @@ func exec(r io.Reader) string {
 	in := strings.Split(sc.Text(), " ")
 	n, _ := strconv.Atoi(in[0])
 	m, _ := strconv.Atoi(in[1])
+	if n >= m {
+		return "0"
+	}
 	sc.Scan()
 	in = strings.Split(sc.Text(), " ")
 	list := make([]int, m)
@@ -71,11 +70,13 @@ func exec(r io.Reader) string {
 	}
 	ivals2 := intervals2(ivals)
 	sort.Sort(ivals2)
-	start, count := 0, 0
-	for _, ii := range ivals2 {
-		count += list[ii.from] - list[start]
-		start = ii.to
+	start, count := ivals2[0].to, list[ivals2[0].from]-list[0]
+	for i := 1; i < len(ivals2); i++ {
+		diff := list[ivals2[i].from] - list[start]
+		count += diff
+		start = ivals2[i].to
 	}
+	count += list[len(list)-1] - list[ivals2[n-2].to]
 	return fmt.Sprintf("%d", count)
 }
 
