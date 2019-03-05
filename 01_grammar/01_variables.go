@@ -6,49 +6,40 @@ import (
 )
 
 func main() {
-	// 宣言した後、値を代入パターン
+	/*
+	 * 変数
+	 */
+	// 初期値無し
 	var msg string
 	msg = "Hello World"
-	/*
-		// 宣言と代入を一緒にするパターン
-		var msg string = "Hello World"
 
-		// 宣言と代入を一緒にするパターン (型省略可能)
-		var msg = "Hello Hello"
-
-		// 宣言と代入を一緒にするパターン (var省略)
-		msg := "Hello World"
-	*/
-
-	// 複数の同じ型の変数を同時に定義
+	// 初期値無し、複数同じ型
 	var a, b int
 	a, b = 10, 15
+
+	// 初期値あり
+	var msg2 string = "Good Night"
+
+	// 初期値有り、値から型を予測できる場合
+	var msg3 = "Good Morning"
+
+	// 初期値有り、値から型を予測できる場合、var 省略
+	msg4 := "Good Evening"
+
+	// まとめて定義（ := は使えない。 var あるから）
+	var (
+		c    int                // 初期値無し
+		d, e float64            // 初期値無し、複数同じ型
+		f    int     = 1        // 初期値有り
+		g            = "fuge"   // 初期値有り、型省略
+		h, i         = 0.0, 1.1 // 初期値有り、複数
+	)
+	fmt.Println(msg, msg2, msg3, msg4, a, b, c, d, e, f, g, h, i)
+
 	/*
-		// 複数の同じ型の変数を同時に定義 (var省略)
-		a, b := 10, 14
-
-		// 複数の型違いの変数を同時に定義
-		var (
-			c int
-			d string
-		)
-		c = 20
-		d = "hoge"
-
-		// 複数の型違いの変数を同時に定義 (型省略パターン)
-		var (
-			c = 20
-			d = "hoge"
-		)
-	*/
-
-	// 定数
+	 * 定数
+	 */
 	const value float64 = 0.1
-
-	fmt.Print(msg + "\n")
-	fmt.Println(a)
-	fmt.Println(b)
-	fmt.Printf("%f\n", value)
 
 	// 列挙
 	const (
@@ -60,7 +51,7 @@ func main() {
 	fmt.Println(zero, one, two, three)
 
 	// 型の検査
-	fmt.Println(reflect.TypeOf(value))
+	fmt.Println("型の検査：", reflect.TypeOf(value))
 
 	/*
 		！！！変数・定数・関数定義の１文字目に注意！！！

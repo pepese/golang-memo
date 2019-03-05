@@ -31,7 +31,7 @@ $ go test -run <テスト関数名>
 
  ## 全文探索
 
-- for 文を二重三重にして回す
+- for 全検索
 - bit 全探索
 - DFS
 - BFS
