@@ -9,29 +9,27 @@ import (
 	"strings"
 )
 
-func member(n int, xs []int) bool {
-	for _, x := range xs {
-		if n == x {
-			return true
-		}
-	}
-	return false
+func delEle(list [][]int, i int) [][]int {
+	result := [][]int{}
+	result = append(result, list[:i]...)
+	result = append(result, list[i+1:]...)
+	return result
 }
 
-func permSub(f func([]int), n, m int, xs []int) {
-	if len(xs) == m {
-		f(xs)
-	} else {
-		for i := 1; i <= n; i++ {
-			if !member(i, xs) {
-				permSub(f, n, m, append(xs, i))
+func permutation(list [][]int) [][][]int {
+	var result [][][]int
+	var inner func(in, out [][]int)
+	inner = func(in, out [][]int) {
+		if len(in) == 1 {
+			result = append(result, append(out, in[0]))
+		} else {
+			for i, n := range in {
+				inner(delEle(in, i), append(out, n))
 			}
 		}
 	}
-}
-
-func permutation(f func([]int), n, m int) {
-	permSub(f, n, m, make([]int, 0, m))
+	inner(list, [][]int{})
+	return result
 }
 
 func exec(r io.Reader) string {
@@ -67,7 +65,6 @@ func exec(r io.Reader) string {
 	sc.Scan()
 	m, _ := strconv.Atoi(sc.Text())
 	p := make([][]int, m)
-	result := S
 	for i := 0; sc.Scan(); i++ {
 		pStr := strings.Split(sc.Text(), " ")
 		p[i] = make([]int, n)
@@ -76,11 +73,16 @@ func exec(r io.Reader) string {
 			p[i][j] = num
 		}
 	}
-	pp := func(xs []int) {
-		T := S
-		for j := 0; j < len(xs); j++ {
-			for i := 0; i <= j; i++ {
-				T = chikan(T, p[xs[i]-1], n)
+	//fmt.Println(permutation(p))
+	result := S
+	for _, ii := range permutation(p) {
+		var bit uint
+		for bit = 1 << uint(len(ii)-1); bit < (1 << uint(len(ii))); bit++ {
+			T := S
+			for j := 0; j < len(ii); j++ {
+				if (bit & (1 << uint(j))) > 0 {
+					T = chikan(T, ii[j], n)
+				}
 			}
 			flag := hikaku(result, T)
 			if flag {
@@ -88,13 +90,42 @@ func exec(r io.Reader) string {
 			}
 		}
 	}
-	permutation(pp, m, m)
 	var sr []string
 	for _, num := range result {
 		str := fmt.Sprintf("%d", num)
 		sr = append(sr, str)
 	}
 	return strings.Join(sr, " ")
+
+	/*
+		for i := 0; sc.Scan(); i++ {
+			pStr := strings.Split(sc.Text(), " ")
+			p[i] = make([]int, n)
+			for j := range pStr {
+				num, _ := strconv.Atoi(pStr[j])
+				p[i][j] = num
+			}
+		}
+		pp := func(xs []int) {
+			T := S
+			for j := 0; j < len(xs); j++ {
+				for i := 0; i <= j; i++ {
+					T = chikan(T, p[xs[i]-1], n)
+				}
+				flag := hikaku(result, T)
+				if flag {
+					result = T
+				}
+			}
+		}
+		permutation(pp, m, m)
+		var sr []string
+		for _, num := range result {
+			str := fmt.Sprintf("%d", num)
+			sr = append(sr, str)
+		}
+		return strings.Join(sr, " ")
+	*/
 }
 
 func main() {
