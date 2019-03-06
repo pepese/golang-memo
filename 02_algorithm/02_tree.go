@@ -1,38 +1,39 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-type Node struct {
-	value int
-	left  *Node
-	right *Node
+type binaryNode struct {
+	left, right *binaryNode
+	data        int
 }
 
-func newNode(x int) *Node {
-	node := new(Node)
-	node.value = x
-	return node
-}
-
-func insertNode(node *Node, x int) *Node {
-	if node == nil {
-		return newNode(x)
+func (n *binaryNode) insert(x int) {
+	if n == nil {
+		return
 	}
-	if node.value > x {
-		node.left = insertNode(node.left, x)
+	if n.data > x {
+		if n.left == nil {
+			n.left = newBinaryNode(x)
+		} else {
+			n.left.insert(x)
+		}
 	} else {
-		node.right = insertNode(node.right, x)
+		if n.right == nil {
+			n.right = newBinaryNode(x)
+		} else {
+			n.right.insert(x)
+		}
 	}
-	return node
 }
 
-func searchNode(node *Node, x int) bool {
-	n := node
+func (n *binaryNode) search(x int) bool {
 	for n != nil {
 		switch {
-		case n.value == x:
+		case n.data == x:
 			return true
-		case n.value > x:
+		case n.data > x:
 			n = n.left
 		default:
 			n = n.right
@@ -41,11 +42,17 @@ func searchNode(node *Node, x int) bool {
 	return false
 }
 
+func newBinaryNode(x int) *binaryNode {
+	node := new(binaryNode)
+	node.data = x
+	return node
+}
+
 func main() {
-	root := newNode(5)
+	root := newBinaryNode(5)
 	fmt.Println(*root)
-	root = insertNode(root, 4)
+	root.insert(4)
 	fmt.Println(root.left)
 	fmt.Println(root.right)
-	fmt.Println(searchNode(root, 4))
+	fmt.Println(root.search(4))
 }
