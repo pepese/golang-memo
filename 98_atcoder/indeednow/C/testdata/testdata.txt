@@ -1,0 +1,12 @@
+[input]
+aaa
+bbb
+[output]
+aaa
+bbb
+[input]
+ccc
+ddd
+[output]
+ccc
+ddd
