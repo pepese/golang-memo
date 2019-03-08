@@ -1,12 +1,18 @@
 [input]
-aaa
-bbb
+3 6
+1 2 3 3
+3 3 3 6
+4 4 4 8
+3 4 3
+4 4 4
+100 100 1
+2 3 4
+0 0 0
+100 100 100
 [output]
-aaa
-bbb
-[input]
-ccc
-ddd
-[output]
-ccc
-ddd
+6
+8
+0
+3
+0
+8
