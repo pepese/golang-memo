@@ -5,21 +5,27 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strconv"
 	"strings"
 )
 
-// 作成ロジック用関数
 func exec(r io.Reader) string {
 	sc := bufio.NewScanner(r)
-	// ここからロジック（繋げるだけ）
-	var str []string
-	for sc.Scan() {
-		str = append(str, fmt.Sprint(sc.Text()))
+	sc.Scan()
+	in := strings.Split(sc.Text(), " ")
+	n, _ := strconv.Atoi(in[0])
+	m, _ := strconv.Atoi(in[1])
+	N := make([]int, n)
+	for i := 0; i < m; i++ {
+		sc.Scan()
+		in = strings.Split(sc.Text(), " ")
+		a, _ := strconv.Atoi(in[0])
+		b, _ := strconv.Atoi(in[1])
+		N[b]++
 	}
-	return strings.Join(str, "\n") // 結果の文字列を返却
+	return ""
 }
 
-// 標準入力は `ctr+D` で EOF になる
 func main() {
 	fmt.Println(exec(os.Stdin))
 }
