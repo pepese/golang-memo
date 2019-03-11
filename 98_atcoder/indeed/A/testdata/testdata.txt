@@ -1,0 +1,40 @@
+[input]
+5 2 2
+aaa
+bbb
+ccc
+ddd
+eee
+[output]
+ccc
+ddd
+[input]
+7 4 2
+this
+is
+not
+displayed
+this
+is
+displayed
+[output]
+this
+is
+displayed
+[input]
+10 4 1
+mzbmweyydiadtlcouegmdbyfwurpwbpuvhifnuapwynd
+htqvkgkbhtytszotwflegsjzzszfwtz
+pnscguemwrczqxycivdqnkypnxnnpmuduhznoaquudhavrncwfwujpcmiggjmcmkkbnjfeodxkgjgwxtrxin
+iqquhuwqhdswxxrxuzzfhkplwunfagppcoildagktgdarveusjuqfis
+ulgbglwm
+gzrnyxryetwzhlnfewczmnoozl
+atugmdjwgzcfabbkoxyjxkatjmpprswkdkobdagwdwxsufeesrvncbszcep
+gpbzuzo
+otorzfskcwbqorvwdrmklfdczatfarqdkelalxzxillkfdvpfpxabqlng
+screntzamztvvcvrtcmbqlizijdwtuyfrxolsysxlfebpolcmqsppmrfkyunyd
+[output]
+mzbmweyydiadtlcouegmdbyfwurpwbpuvhifnuapwynd
+htqvkgkbhtytszotwflegsjzzszfwtz
+pnscguemwrczqxycivdqnkypnxnnpmuduhznoaquudhavrncwfwujpcmiggjmcmkkbnjfeodxkgjgwxtrxin
+iqquhuwqhdswxxrxuzzfhkplwunfagppcoildagktgdarveusjuqfis
