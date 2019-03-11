@@ -20,19 +20,13 @@ func (q *queue) len() int {
 }
 
 func (q *queue) enqueue(x int) {
-	if q == nil || q.len() == 0 {
-		q = newQueue(x)
-		return
-	}
 	node := &node{data: x}
-	if q.len() == 1 {
-		q.head = node
-		q.tail.next = q.head
+	if q.len() == 0 {
+		q.head, q.tail, q.size = node, node, 1
 	} else {
-		q.head.next = node
-		q.head = node
+		q.head.next, q.head = node, node
+		q.size++
 	}
-	q.size++
 }
 
 func (q *queue) dequeue() (int, error) {
@@ -68,9 +62,16 @@ func main() {
 	fmt.Println(num, err)
 	num, err = q.dequeue()
 	fmt.Println(num, err)
+	q.enqueue(4)
+	num, err = q.dequeue()
+	fmt.Println(num, err)
 
 	var nilq queue
 	fmt.Println("nilq", nilq)
-	nilq.enqueue(1)
+	num, err = nilq.dequeue()
+	fmt.Println(num, err)
+	nilq.enqueue(10)
 	fmt.Println("nilq", nilq)
+	num, err = nilq.dequeue()
+	fmt.Println(num, err)
 }
