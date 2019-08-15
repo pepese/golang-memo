@@ -10,7 +10,7 @@ func main() {
 	} else if score > 60 {
 		fmt.Println("2")
 	} else {
-		fmt.Println("3")
+		fmt.Println("3") // !
 	}
 
 	// if 文内でしか使わない変数は if 文の中で定義できる
@@ -19,6 +19,6 @@ func main() {
 	} else if a > 60 {
 		fmt.Println("2")
 	} else {
-		fmt.Println("3")
+		fmt.Println("3") // !
 	}
 }

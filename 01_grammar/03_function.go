@@ -23,6 +23,10 @@ func getHelloMessage(name string) (msg string) {
 	return
 }
 
+func sayMulti(name string) (msg1 string, msg2 string) {
+	return getMessage(name), getHelloMessage(name)
+}
+
 func main() {
 	sayName("pepese")
 	fmt.Println(getMessage("pepese"))
@@ -32,6 +36,9 @@ func main() {
 		return getMessage(name)
 	}
 	fmt.Println(f("pepese"))
+
+	a, b := sayMulti("pepese")
+	fmt.Println(a, b)
 
 	func(name string) {
 		fmt.Println(name)

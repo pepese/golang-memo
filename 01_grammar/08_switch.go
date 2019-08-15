@@ -11,7 +11,7 @@ func main() {
 	case "yellow":
 		fmt.Println("caution")
 	case "green", "blue":
-		fmt.Println("Go")
+		fmt.Println("Go") // !
 	default:
 		fmt.Println("wrong")
 	}
@@ -20,7 +20,7 @@ func main() {
 	score := 82
 	switch {
 	case score > 80:
-		fmt.Println("Great!")
+		fmt.Println("Great!") // !
 	default:
 		fmt.Println("Bad")
 	}
